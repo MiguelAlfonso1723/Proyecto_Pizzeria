@@ -7,6 +7,7 @@ import {
   RiCloseLine,
   RiSearch2Line,
   RiArrowDownSLine,
+  RiDeleteBin6Line
 } from "react-icons/ri";
 
 import Sidebar from "./components/shared/Sidebar";
@@ -17,7 +18,13 @@ function App() {
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
+    setShowOrder(false);
   };
+
+  const toggleOrders = () =>{
+    setShowOrder(!showOrder);
+    setShowMenu(false);
+  }
 
   return (
     <div className="bg-[#262837] w-full min-h-screen">
@@ -30,7 +37,7 @@ function App() {
         <button className="p-2">
           <RiAddLine />
         </button>
-        <button className="p-2">
+        <button onClick={toggleOrders} className="p-2">
           <RiPieChartLine />
         </button>
         <button onClick={toggleMenu} className="text-white p-2">
@@ -149,10 +156,11 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="lg:col-span-2 fixed lg:static right-0 top-0 bg-[#1F1D2B] w-full h-full">
+        <div className={`lg:col-span-2 fixed lg:static right-0 top-0 bg-[#1F1D2B] w-full h-full
+          transition-all ${showOrder ? "right-0" : "-right-full"}`}>
           {/*Orders */}
-          <div className="relative pt-16 text-gray-300 p-8">
-            <RiCloseLine className="absolute left-4 top-4 p-3 box-content text-gray-300 bg-[#262837] rounded-full text-xl" />
+          <div className="relative pt-16 text-gray-300 p-8 h-full">
+            <RiCloseLine onClick={toggleOrders} className="absolute left-4 top-4 p-3 box-content text-gray-300 bg-[#262837] rounded-full text-xl" />
             <h1 className="text-2xl my-4">Orden #11</h1>
             {/* Pills */}
             <div className="flex items-center gap-4 flex-wrap">
@@ -168,11 +176,170 @@ function App() {
             </div>
             {/*Car*/}
             <div>
-              <div className="grid grid-cols-6">
+              <div className="grid grid-cols-6 mb-4 p-4">
                 <h5 className="col-span-4">Item</h5>
-                <h5>Cantidad</h5>
+                <h5>Cant.</h5>
                 <h5>Precio</h5>
               </div>
+              {/* Productos */}
+              <div className="h-[400px] md:h-[700px] lg:h-[540px] overflow-scroll">
+                {/*Producto*/}
+                <div className="bg-[#262837] p-4 rounded-xl mb-4">
+                <div className="grid grid-cols-6 mb-4">
+                  {/*Product Description*/}
+                  <div className="col-span-4 flex items-center gap-3"> 
+                    <img src="Pizza1.png" className="w-10 h-10 object-cover"/>
+                    <div>
+                      <h5 className="text-sm">Pizza</h5>
+                      <p className="text-xs text-gray-500">$2.64</p>
+                    </div>
+                  </div>
+                  {/*Cantidad*/}
+                  <div>
+                    <span>2</span>
+                  </div>
+                  {/*precio*/}
+                  <div>
+                    <span>$2.64</span>
+                  </div>
+                </div>
+                {/* Notas */}
+                <div className="grid grid-cols-6 items-center">
+                <form className="col-span-5">
+                      <input type="text" 
+                        className="bg-[#1F1D2B] py-2 px-4 rounded-lg outline-none"
+                        placeholder="Notas pedido..." 
+                      />
+                    </form>
+                    <div >
+                      <button className="border border-red-500 p-2 rounded-lg"> 
+                        <RiDeleteBin6Line className="text-red-500"/>
+                      </button>
+                    </div>
+                    
+                </div>
+                </div>
+                {/*Producto*/}
+                <div className="bg-[#262837] p-4 rounded-xl mb-4">
+                <div className="grid grid-cols-6 mb-4">
+                  {/*Product Description*/}
+                  <div className="col-span-4 flex items-center gap-3"> 
+                    <img src="Pizza1.png" className="w-10 h-10 object-cover"/>
+                    <div>
+                      <h5 className="text-sm">Pizza Hawaiana Grande</h5>
+                      <p className="text-xs text-gray-500">$20000</p>
+                    </div>
+                  </div>
+                  {/*Cantidad*/}
+                  <div>
+                    <span>2</span>
+                  </div>
+                  {/*precio*/}
+                  <div>
+                    <span>$40000</span>
+                  </div>
+                </div>
+                {/* Notas */}
+                <div className="grid grid-cols-6 items-center">
+                <form className="col-span-5">
+                      <input type="text" 
+                        className="bg-[#1F1D2B] py-2 px-4 rounded-lg outline-none"
+                        placeholder="Notas pedido..." 
+                      />
+                    </form>
+                    <div >
+                      <button className="border border-red-500 p-2 rounded-lg"> 
+                        <RiDeleteBin6Line className="text-red-500"/>
+                      </button>
+                    </div>
+                    
+                </div>
+                </div>
+                {/*Producto*/}
+                <div className="bg-[#262837] p-4 rounded-xl mb-4">
+                <div className="grid grid-cols-6 mb-4">
+                  {/*Product Description*/}
+                  <div className="col-span-4 flex items-center gap-3"> 
+                    <img src="Pizza1.png" className="w-10 h-10 object-cover"/>
+                    <div>
+                      <h5 className="text-sm">Pizza Hawaiana Grande</h5>
+                      <p className="text-xs text-gray-500">$20000</p>
+                    </div>
+                  </div>
+                  {/*Cantidad*/}
+                  <div>
+                    <span>2</span>
+                  </div>
+                  {/*precio*/}
+                  <div>
+                    <span>$40000</span>
+                  </div>
+                </div>
+                {/* Notas */}
+                <div className="grid grid-cols-6 items-center">
+                <form className="col-span-5">
+                      <input type="text" 
+                        className="bg-[#1F1D2B] py-2 px-4 rounded-lg outline-none"
+                        placeholder="Notas pedido..." 
+                      />
+                    </form>
+                    <div >
+                      <button className="border border-red-500 p-2 rounded-lg"> 
+                        <RiDeleteBin6Line className="text-red-500"/>
+                      </button>
+                    </div>
+                    
+                </div>
+                </div>
+                {/*Producto*/}
+                <div className="bg-[#262837] p-4 rounded-xl mb-4">
+                <div className="grid grid-cols-6 mb-4">
+                  {/*Product Description*/}
+                  <div className="col-span-4 flex items-center gap-3"> 
+                    <img src="Pizza1.png" className="w-10 h-10 object-cover"/>
+                    <div>
+                      <h5 className="text-sm">Pizza Hawaiana Grande</h5>
+                      <p className="text-xs text-gray-500">$20000</p>
+                    </div>
+                  </div>
+                  {/*Cantidad*/}
+                  <div>
+                    <span>2</span>
+                  </div>
+                  {/*precio*/}
+                  <div>
+                    <span>$40000</span>
+                  </div>
+                </div>
+                {/* Notas */}
+                <div className="grid grid-cols-6 items-center">
+                <form className="col-span-5">
+                      <input type="text" 
+                        className="bg-[#1F1D2B] py-2 px-4 rounded-lg outline-none"
+                        placeholder="Notas pedido..." 
+                      />
+                    </form>
+                    <div >
+                      <button className="border border-red-500 p-2 rounded-lg"> 
+                        <RiDeleteBin6Line className="text-red-500"/>
+                      </button>
+                    </div>
+                    
+                </div>
+                </div>
+              </div>
+            </div>
+            {/* Envio Pago */}
+            <div className="bg-[#262837] absolute w-full bottom-0 left-0 p-4">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-gray-400">Descuento</span>
+                <span>$0</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-gray-400">Subtotal</span>
+                <span>$40000</span>
+              </div>
+              <div><button className="bg-[#ec7c6a] w-full py-2 px-4 rounded">Pagar</button></div>
             </div>
           </div>
         </div>
